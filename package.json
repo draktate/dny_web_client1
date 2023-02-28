@@ -43,5 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://localhost:3200/api/"
+  "proxy":"http://book4meapi-env.eba-f4fqx2w8.ap-south-1.elasticbeanstalk.com/"
 }
