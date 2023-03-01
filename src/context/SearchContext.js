@@ -8,7 +8,7 @@ const INITIAL_STATE = {
     children: undefined,
     room: undefined,
   },
-  api_redirect:"http://dnyweb.ap-south-1.elasticbeanstalk.com/api/"
+  api_redirect:"http://book4meapi-env.eba-f4fqx2w8.ap-south-1.elasticbeanstalk.com/api"
 };
 
 export const SearchContext = createContext(INITIAL_STATE);
@@ -33,7 +33,7 @@ export const SearchContextProvider = ({ children }) => {
         city: state.city,
         dates: state.dates,
         options: state.options,
-        api_redirect:"http://dnyweb.ap-south-1.elasticbeanstalk.com/api",
+        api_redirect:"http://book4meapi-env.eba-f4fqx2w8.ap-south-1.elasticbeanstalk.com/api",
         dispatch,
       }}
     >
