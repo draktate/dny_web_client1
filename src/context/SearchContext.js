@@ -8,7 +8,7 @@ const INITIAL_STATE = {
     children: undefined,
     room: undefined,
   },
-  api_redirect:"https://master.d1vdt0domxzo15.amplifyapp.com//api"
+  api_redirect:"https://master.d1vdt0domxzo15.amplifyapp.com/api"
 };
 
 export const SearchContext = createContext(INITIAL_STATE);
@@ -33,7 +33,7 @@ export const SearchContextProvider = ({ children }) => {
         city: state.city,
         dates: state.dates,
         options: state.options,
-        api_redirect:"https://master.d1vdt0domxzo15.amplifyapp.com//api",
+        api_redirect:"https://master.d1vdt0domxzo15.amplifyapp.com/api",
         dispatch,
       }}
     >
