@@ -43,5 +43,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://book4meapi-env.eba-f4fqx2w8.ap-south-1.elasticbeanstalk.com/"
+  "proxy": "http://localhost:7200/",
+  "devDependencies": {
+    "serverless-offline": "^12.0.4"
+  }
 }
