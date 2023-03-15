@@ -8,7 +8,7 @@ const INITIAL_STATE = {
     children: undefined,
     room: undefined,
   },
-  api_redirect:"https://w91ys5l0tj.execute-api.ap-south-1.amazonaws.com/dev"
+  api_redirect:"https://jlievu03b4.execute-api.ap-south-1.amazonaws.com/dev/api"
 };
 
 export const SearchContext = createContext(INITIAL_STATE);
@@ -33,7 +33,7 @@ export const SearchContextProvider = ({ children }) => {
         city: state.city,
         dates: state.dates,
         options: state.options,
-        api_redirect:"https://w91ys5l0tj.execute-api.ap-south-1.amazonaws.com/dev",
+        api_redirect:"https://jlievu03b4.execute-api.ap-south-1.amazonaws.com/dev/api",
         dispatch,
       }}
     >

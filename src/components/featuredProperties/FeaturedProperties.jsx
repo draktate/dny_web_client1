@@ -1,8 +1,14 @@
 import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.css";
+import { SearchContext } from "../../context/SearchContext";
+import { useContext } from "react";
+
 
 const FeaturedProperties = () => {
-  const { data, loading, error } = useFetch("/api/hotels?featured=true&limit=4");
+  const searchContextValues  = useContext(SearchContext);
+
+  const { data, loading, error } = useFetch(
+    `${searchContextValues.api_redirect}/hotels/featured=true&limit=4`);
 
   return (
     <div className="fp">

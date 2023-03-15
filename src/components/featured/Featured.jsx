@@ -11,7 +11,7 @@ const Featured = () => {
   //console.log("searchContextValues:", searchContextValues);
 
   const { data, loading, error } = useFetch(
-    `${searchContextValues.api_redirect}/hotels/countByCity?cities=Mumbai,Delhi,Pune`
+    `${searchContextValues.api_redirect}/hotels/countByCity/Mumbai,Delhi,Pune`
   );
 
 
