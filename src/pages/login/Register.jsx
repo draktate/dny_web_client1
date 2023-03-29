@@ -24,20 +24,21 @@ const Login = () => {
   };
 
   const handleClick = async (e) => {
-    console.log("Trying to login to ");
+    console.log("Trying to register ");
     e.preventDefault();
-    dispatch({ type: "LOGIN_START" });
+    dispatch({ type: "REGISTERATION_START" });
     try {
       console.log("credentials:", credentials)
 
-      console.log("Trying to login to ", `${searchContextValues.api_redirect}/auth/login`)
-      const res = await axios.post(`${searchContextValues.api_redirect}/auth/login`, credentials);
+      console.log("Trying to login to ", `${searchContextValues.api_redirect}/auth/register`)
+      const res = await axios.post(`${searchContextValues.api_redirect}/auth/register`, credentials);
       console.log(res)
 
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+      dispatch({ type: "REGISTERATION_SUCCESS", payload: res.data.details });
       //this.context.router.history.goBack;
       //this.goBack()
-      navigate(-1)
+      
+      navigate("/login")
 
   
   
@@ -68,8 +69,47 @@ const Login = () => {
           onChange={handleChange}
           className="lInput"
         />
+        <input
+          type="password"
+          placeholder="confirm_password"
+          id="cpassword"
+          onChange={handleChange}
+          className="lInput"
+        />
+
+        <input
+          type="number"
+          placeholder="phone_number"
+          id="phone"
+          onChange={handleChange}
+          className="lInput"
+        />
+        <input
+          type="text"
+          placeholder="City"
+          id="city"
+          onChange={handleChange}
+          className="lInput"
+        />
+        <input
+          type="text"
+          placeholder="Country"
+          id="country"
+          onChange={handleChange}
+          className="lInput"
+        />
+
+        <input
+          type="email"
+          placeholder="Email"
+          id="email"
+          onChange={handleChange}
+          className="lInput"
+        />
+
+
         <button disabled={loading} onClick={handleClick} className="lButton">
-          Login
+          Register
         </button>
         {error && <span>{error.message}</span>}
       </div>

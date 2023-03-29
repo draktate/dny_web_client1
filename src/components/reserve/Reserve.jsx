@@ -8,9 +8,15 @@ import { SearchContext } from "../../context/SearchContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
 const Reserve = ({ setOpen, hotelId }) => {
+  const searchContextValues  = useContext(SearchContext);
+
+  
   const [selectedRooms, setSelectedRooms] = useState([]);
-  const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
+  console.log('fetching', `${searchContextValues.api_redirect}/hotels/room/${hotelId}`)
+  const { data, loading, error } = useFetch(`${searchContextValues.api_redirect}/hotels/room/${hotelId}`);
+
   const { dates } = useContext(SearchContext);
 
   const getDatesInRange = (startDate, endDate) => {
@@ -31,7 +37,9 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
 
-  const isAvailable = (roomNumber) => {
+  const isAvailable = (roomNumber) => { 
+    
+    if(!roomNumber.unavailableDates) return true;
     const isFound = roomNumber.unavailableDates.some((date) =>
       alldates.includes(new Date(date).getTime())
     );
@@ -53,18 +61,28 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   const handleClick = async () => {
     try {
+
+      console.log("dates:", alldates)
       await Promise.all(
         selectedRooms.map((roomId) => {
-          const res = axios.put(`/rooms/availability/${roomId}`, {
-            dates: alldates,
+          const res = axios.put(`${searchContextValues.api_redirect}/rooms/avail/${roomId}`, {
+            bookedFor: alldates,
           });
           return res.data;
         })
       );
       setOpen(false);
       navigate("/");
-    } catch (err) {}
+    } catch (err) {
+      alert("Encountered Error:", err)
+    }
+
+    alert("Your booking is confirmed")
+
+
   };
+
+
   return (
     <div className="reserve">
       <div className="rContainer">

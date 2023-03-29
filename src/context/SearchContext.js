@@ -1,5 +1,4 @@
 import { createContext, useReducer } from "react";
-
 const INITIAL_STATE = {
   city: undefined,
   dates: [],
@@ -8,8 +7,9 @@ const INITIAL_STATE = {
     children: undefined,
     room: undefined,
   },
-  api_redirect:"https://jlievu03b4.execute-api.ap-south-1.amazonaws.com/dev/api"
+  api_redirect:"http://localhost:3000/api"
 };
+//api_redirect:"https://dlgmi4r3hb.execute-api.ap-south-1.amazonaws.com/dev/api"
 
 export const SearchContext = createContext(INITIAL_STATE);
 
@@ -33,7 +33,7 @@ export const SearchContextProvider = ({ children }) => {
         city: state.city,
         dates: state.dates,
         options: state.options,
-        api_redirect:"https://jlievu03b4.execute-api.ap-south-1.amazonaws.com/dev/api",
+        api_redirect:"http://localhost:3000/api",
         dispatch,
       }}
     >

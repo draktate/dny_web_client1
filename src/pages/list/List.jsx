@@ -2,11 +2,12 @@ import "./list.css";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useContext,useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
+import { SearchContext } from "../../context/SearchContext";
 
 const List = () => {
   const location = useLocation();
@@ -17,8 +18,13 @@ const List = () => {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
+  const searchContextValues  = useContext(SearchContext);
+
+  //  const { data, loading, error } = useFetch(`${searchContextValues.api_redirect}/hotels/countByType`);
+  
+
   const { data, loading, error, reFetch } = useFetch(
-    `/api/hotels?city=${destination}&min=${min || 0 }&max=${max || 999}`
+    `${searchContextValues.api_redirect}/hotels/city=${destination}&min=${min || 0 }&max=${max || 999}`
   );
 
   const handleClick = () => {

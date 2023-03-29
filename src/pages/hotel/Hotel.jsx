@@ -17,14 +17,19 @@ import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
 import Reserve from "../../components/reserve/Reserve";
 
+
+
 const Hotel = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const searchContextValues  = useContext(SearchContext);
 
-  const { data, loading, error } = useFetch(`/api/hotels/find/${id}`);
+//  const { data, loading, error } = useFetch(`${searchContextValues.api_redirect}/hotels/countByType`);
+  const { data, loading, error } = useFetch(`${searchContextValues.api_redirect}/hotels/find/${id}`);
+
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -59,8 +64,12 @@ const Hotel = () => {
   const handleClick = () => {
     if (user) {
       setOpenModal(true);
+
+
     } else {
       navigate("/login");
+      setOpenModal(true);
+
     }
   };
   return (
@@ -98,7 +107,7 @@ const Hotel = () => {
             </div>
           )}
           <div className="hotelWrapper">
-            <button className="bookNow">Reserve or Book Now!</button>
+            <button className="bookNow" onClick={handleClick}>Rezerve or Book Now !</button>
             <h1 className="hotelTitle">{data.name}</h1>
             <div className="hotelAddress">
               <FontAwesomeIcon icon={faLocationDot} />
@@ -112,7 +121,7 @@ const Hotel = () => {
               free airport taxi
             </span>
             <div className="hotelImages">
-              {data.photos?.map((photo, i) => (
+              {data.photoes?.map((photo, i) => (
                 <div className="hotelImgWrapper" key={i}>
                   <img
                     onClick={() => handleOpen(i)}
